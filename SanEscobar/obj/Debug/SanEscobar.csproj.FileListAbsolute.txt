@@ -80,3 +80,6 @@ E:\SanEscobar\SanEscobar\SanEscobar\bin\Microsoft.Owin.Security.MicrosoftAccount
 E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.csprojResolveAssemblyReference.cache
 E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.dll
 E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.pdb
+E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.Migrations.Initial.resources
+E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.csproj.GenerateResource.Cache
+E:\SanEscobar\SanEscobar\SanEscobar\obj\Debug\SanEscobar.Migrations.Initial1.resources

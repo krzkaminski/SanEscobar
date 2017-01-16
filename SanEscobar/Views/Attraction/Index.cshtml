@@ -1,0 +1,24 @@
+﻿@model IEnumerable<SanEscobar.Models.Attraction>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        kukiel 1 
+
+        <br />
+        @foreach (var a in Model)
+        {
+            @a.Name
+        }
+    </div>
+</body>
+</html>
