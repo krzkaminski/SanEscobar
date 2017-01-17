@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,13 +18,32 @@ namespace SanEscobar.Controllers
             return View(db.Attractions.ToList());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Attraction at = db.Attractions.Find(id);
+            if (at == null)
+            {
+                return HttpNotFound();
+            }
+            db.Attractions.Remove(at);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include ="Id, Name, Desc, Added, Image")] Attraction at)
         {
             if(ModelState.IsValid)
@@ -44,6 +64,7 @@ namespace SanEscobar.Controllers
             return View(at);
         }
 
+        [Authorize]
         [HttpPost]
         public string UploadIMage()
         {

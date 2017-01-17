@@ -1,20 +1,5 @@
 ﻿@model IEnumerable<SanEscobar.Models.Attraction>
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        kukiel 1 
-
-        <br />
         <div class="container-fluid attractions-container">
             <div class="col-md-12">
                 @foreach (var a in Model)
@@ -32,13 +17,19 @@
                     <div class="attr-date">
                         @a.Added
                     </div>
+                    @if (Request.IsAuthenticated)
+                    {
+                    <div class="attr-del">
+                        @Html.ActionLink("Delete", "Delete", new { id = a.Id })
+                    </div>
+                    }
                 </div>
                 }
             </div>
         </div>
-    </div>
 
     <style>
+        
         .attraction div {
             padding: 15px;
         }
@@ -60,6 +51,7 @@
             width: 100%;
             border-radius: 15px;
         }
+        .attraction:nth-of-type(even){
+            background: #fafafa;
+        }
     </style>
-</body>
-</html>
