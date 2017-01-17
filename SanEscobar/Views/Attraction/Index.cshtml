@@ -15,10 +15,51 @@
         kukiel 1 
 
         <br />
-        @foreach (var a in Model)
-        {
-            @a.Name
-        }
+        <div class="container-fluid attractions-container">
+            <div class="col-md-12">
+                @foreach (var a in Model)
+                {
+                <div class="attraction flex-row">
+                    <div class="attr-img">
+                        <img src="@a.Image" alt="@a.Name"/>
+                    </div>
+                    <div class="attr-name">
+                        @a.Name                  
+                    </div>
+                    <div class="attr-desc">
+                        @a.Desc
+                    </div>
+                    <div class="attr-date">
+                        @a.Added
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
     </div>
+
+    <style>
+        .attraction div {
+            padding: 15px;
+        }
+        .flex-row {
+            display: flex;
+            align-items: center;
+        }
+        .attraction .attr-img {
+        flex: 2;
+        }
+
+        .attraction .attr-name {
+        flex: 1;
+        }
+        .attraction .attr-desc {flex: 3;}
+        .attraction .attr-date {flex: 1;}
+
+        .attraction .attr-img img {
+            width: 100%;
+            border-radius: 15px;
+        }
+    </style>
 </body>
 </html>
