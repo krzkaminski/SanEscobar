@@ -230,11 +230,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\styl\16118100_1325011634204735_1874487171_n.png" />
+    <Content Include="images\styl\sanesco.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\bangers-regular-webfont-webfont.woff" />
+    <Content Include="fonts\bangers-regular-webfont-webfont.woff2" />
+    <Content Include="fonts\comfortaa-regular-webfont.woff" />
+    <Content Include="fonts\comfortaa-regular-webfont.woff2" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -281,6 +287,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Attraction\Index.cshtml" />
     <Content Include="Views\Attraction\Create.cshtml" />
+    <Content Include="Views\Attractions\Create.cshtml" />
+    <Content Include="Views\Attractions\Delete.cshtml" />
+    <Content Include="Views\Attractions\Details.cshtml" />
+    <Content Include="Views\Attractions\Edit.cshtml" />
+    <Content Include="Views\Attractions\Index.cshtml" />
+    <Content Include="Views\Attraction\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

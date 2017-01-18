@@ -1,0 +1,159 @@
+﻿@model SanEscobar.Models.Attraction
+@{
+    ViewBag.Title = "Edytuj";
+}
+ 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Nazwa", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Desc, "Opis", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Added, "Data", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Added, new { htmlAttributes = new { @class = "form-control dtp" } })
+                @Html.ValidationMessageFor(model => model.Added, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @*@Html.LabelFor(model => model.Image, "Zdjęcie", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Added, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, "Zdjęcie", htmlAttributes: new { @class = "control-label col-md-2" })
+            <form method="post" id="#imgup" enctype="multipart/form-data">
+                <div class="file-upload custom-drop-zone" data-input-name="Photo" data-unodz-msg="Drop image here or click to choose">
+                </div>
+                <!--<input type="file" name="Image" />-->
+            </form>
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+ 
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        UnoDropZone.init();
+
+        $('input[name=Photo]').on('change', function () {
+            var form = new FormData($("#imgup"));
+            form.append('file', $('input[name=Photo]').prop('files')[0]);
+
+            $.ajax({
+                url: '/Attraction/UploadIMage',
+                method: 'POST',
+                data: form,
+                dataType: 'text',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $('input[name=Image]').val(data);
+                },
+                error: function () {
+                    alert("coś się popsuło i niestety nie działa.");
+                }
+            });
+        });
+
+
+    });
+    </script>
+}
+
+
+<style>
+    .navbar-inverse {
+        background-color: rgba(255, 255, 255, 0.0);
+        border-color: rgba(255, 255, 255, 0.0);
+    }
+
+    body {
+        background-image: url(/images/styl/sanesco.jpg);
+        background-size: 100%;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #eeeeee;
+        font-family: 'bangersregular';
+        font-size: xx-large;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #eeeeee;
+        font-family: 'bangersregular';
+        font-size: large;
+    }
+
+    .form-horizontal {
+        height: 400px;
+        width: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -200px 0 0 -200px;
+    }
+
+    .file-upload {
+        float: right;
+        width: 80%;
+    }
+
+    .col-md-offset-2 {
+        padding-top: 50px;
+    }
+
+    .file-upload {
+        background-color: transparent;
+        border: 2px solid;
+        border-color: #eeeeee;
+        border-radius: 10px;
+    }
+
+    .control-label {
+        color: #eeeeee;
+        font-family: 'comfortaaregular';
+    }
+
+    .file-upload:hover .message {
+        color: #eeeeee;
+        font-family: 'comfortaaregular';
+    }
+</style>

@@ -1,6 +1,7 @@
 ﻿using SanEscobar.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -88,6 +89,33 @@ namespace SanEscobar.Controllers
                 photo.SaveAs(fullPath);
             }
             return rt;
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Attraction atrakcje = db.Attractions.Find(id);
+            if (atrakcje == null)
+            {
+                return HttpNotFound();
+            }
+            return View(atrakcje);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name,Desc,Added,Image")] Attraction atrakcje)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(atrakcje).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(atrakcje);
         }
 
         public char GenChar(System.Random random)

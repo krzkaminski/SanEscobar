@@ -1,18 +1,16 @@
 ﻿@using SanEscobar.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Zaloguj";
 }
 
-<h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
+
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
@@ -22,7 +20,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.Password, "Hasło", new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -42,7 +40,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink("Zarejestruj jako nowy użytkownik", "Register")
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
@@ -61,3 +59,58 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<style>
+    .navbar-inverse {
+        background-color: rgba(255, 255, 255, 0.0);
+        border-color: rgba(255, 255, 255, 0.0);
+    }
+
+    body {
+        background-image: url(/images/styl/sanesco.jpg);
+        background-size: 100%;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #eeeeee;
+         font-family:'bangersregular';
+        font-size: xx-large;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #eeeeee;
+        font-family:'bangersregular';
+        font-size:large; 
+    }
+
+    h2 {
+        color: #eeeeee;
+    }
+
+    .row {
+        height: 400px;
+        width: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -200px 0 0 -200px;
+    }
+
+    .col-md-2 {
+        color: #eeeeee;
+        font-family:'comfortaaregular';
+        
+    }
+
+        a {
+        font-family: 'comfortaaregular';
+        color: cornflowerblue;
+        font-weight:600;
+
+    }
+
+ 
+
+
+</style>
+

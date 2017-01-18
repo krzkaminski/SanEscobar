@@ -1,57 +1,145 @@
 ﻿@model IEnumerable<SanEscobar.Models.Attraction>
+@{
+    ViewBag.Title = "Atrakcje";
+}
+<div class="container-fluid attractions-container">
+    <div class="col-md-12">
+        @foreach (var a in Model)
+        {
 
-        <div class="container-fluid attractions-container">
-            <div class="col-md-12">
-                @foreach (var a in Model)
+            <div class="attraction flex-row">
+                <div class="attr-img">
+                    <img src="@a.Image" alt="@a.Name" />
+                </div>
+
+
+
+
+                <div class="wrapper">
+                    <div class="topik">
+                        @if (Request.IsAuthenticated)
                 {
-                <div class="attraction flex-row">
-                    <div class="attr-img">
-                        <img src="@a.Image" alt="@a.Name"/>
+                            <div class="attr-del">
+                                @Html.ActionLink("Delete", "Delete", new { id = a.Id })
+                            </div>
+                            <div class="attr-edi">
+                                @Html.ActionLink("Edit", "Edit", new { id = a.Id })
+                            </div>
+                        }
+                        <div class="attr-date">
+                            @a.Added
+                        </div>
+
                     </div>
                     <div class="attr-name">
-                        @a.Name                  
+                        @a.Name
                     </div>
                     <div class="attr-desc">
                         @a.Desc
                     </div>
-                    <div class="attr-date">
-                        @a.Added
-                    </div>
-                    @if (Request.IsAuthenticated)
-                    {
-                    <div class="attr-del">
-                        @Html.ActionLink("Delete", "Delete", new { id = a.Id })
-                    </div>
-                    }
                 </div>
-                }
+
+
+
             </div>
-        </div>
+        }
+    </div>
+</div>
 
-    <style>
-        
+<style>
+    #wrapper {
+        height: auto;
+        width: auto;
+    }
+
+
+
+    .navbar-inverse {
+        background-color: rgba(255, 255, 255, 0.0);
+        border-color: rgba(255, 255, 255, 0.0);
+    }
+
+    body {
+        background-image: url(/images/styl/sanesco.jpg);
+        background-size: 100%;
+        color: #eeeeee;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #eeeeee;
+        font-family: 'bangersregular';
+        font-size: xx-large;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #eeeeee;
+        font-family: 'bangersregular';
+        font-size: large;
+    }
+
+    .attraction {
+        background: rgba(0, 0, 0, 0.0001);
+    }
+
         .attraction div {
-            padding: 15px;
+            padding-left: 10px;
         }
-        .flex-row {
-            display: flex;
-            align-items: center;
-        }
-        .attraction .attr-img {
+
+    .flex-row {
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+
+    .attraction .attr-img img {
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.0001);
+    }
+
+    .attraction .attr-name {
+        font-family: 'comfortaaregular';
+        font-size: x-large;
+    }
+
+    .attraction .attr-desc {
+        font-family: 'comfortaaregular';
+        font-size: large;
+    }
+
+    .attraction .attr-date {
+        font-family: 'comfortaaregular';
+    }
+
+    .topik {
+        display: flex;
+        float: right;
+    }
+
+
+    /*.attraction .attr-img img {
+        width: inherit;
+    }*/
+
+    .wrapper {
         flex: 2;
-        }
+    }
 
-        .attraction .attr-name {
+    .attr-img {
         flex: 1;
-        }
-        .attraction .attr-desc {flex: 3;}
-        .attraction .attr-date {flex: 1;}
+    }
 
-        .attraction .attr-img img {
-            width: 100%;
-            border-radius: 15px;
-        }
-        .attraction:nth-of-type(even){
-            background: #fafafa;
-        }
-    </style>
+    .flex-row {
+        padding-bottom: 20px;
+    }
+
+    a {
+        font-family: 'comfortaaregular';
+        color: cornflowerblue;
+        font-weight:600;
+    }
+</style>
